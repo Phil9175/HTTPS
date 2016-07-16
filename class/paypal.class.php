@@ -2,8 +2,8 @@
 class paypal
 {
 	public static $url = "https://api.sandbox.paypal.com";
-	public static $clientId = "ASaj1PFK21qK-4fFDfg7XY3pa-l5ZYAmA_217joRBrgAoyhPWlPpKfQ-ajc2mFfEs1CaiZ3ml0fbTfXL";
-	public static $secret = "ENfqk9uHlACKvSbg3qMQTiLNHDep0B4d0iCTKSzDh4uEuZ3Bjv9QIzAPnWsGatfnGHsVN5_1mNvPAPoh";
+	public static $clientId = "";
+	public static $secret = "";
 	protected $token;
 	
 	public function __construct(){

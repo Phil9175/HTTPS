@@ -6,11 +6,14 @@ date_default_timezone_set("Europe/Paris");
 
 include_once("class/autoload.php");
 
-$_GET["paymentId"];
-$_GET["token"];
-$_GET["PayerID"];
+if (isset($_SESSION["flash"])){
+	$_SESSION["flash"][] = ["message" => "La paiement a ete reguse ou abandonne par Paypal", "style" => "danger"];
+	
+}else{
+	$_SESSION["flash"] = array();
+	$_SESSION["flash"][] = ["message" => "La paiement a ete reguse ou abandonne par Paypal", "style" => "danger"];
+}
 
-$paypal = new paypal();
-$paypal->execute_payment($_GET["paymentId"], $_GET["PayerID"]);
+header('Location: http://nobox.info/index.php');
 
 ?>
