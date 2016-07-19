@@ -22,6 +22,6 @@ if (isset($_SESSION["flash"])){
 	$_SESSION["flash"][] = ["message" => "La paiement a ete accepte par Paypal", "style" => "success"];
 }
 
-header('Location: http://nobox.info/index.php');
+header('Location: http://www.nobox.info/index.php');
 
 ?>

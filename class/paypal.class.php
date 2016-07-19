@@ -85,13 +85,6 @@ class paypal
 			'Content-Type:application/json',
 			'Authorization: Bearer '.$this->token
 			));
-		$champ = array();
-		$champ = ["intent" => "sale",
-					"redirect_urls" => $redirect_urls,
-					"payer" => $payer,
-					"transactions" => ["reference_id" => "12",
-					"amount" => $amount]
-					];
 					
 		curl_setopt($curl, CURLOPT_POSTFIELDS, '{ "payer_id" : "'.$payer_id.'" }');
 		if (curl_exec($curl) == false){

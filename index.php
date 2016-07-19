@@ -5,7 +5,6 @@ ini_set('display_errors', true);
 date_default_timezone_set("Europe/Paris");
 
 include_once("class/autoload.php");
-echo $_POST["envoie"];
 if (isset($_POST["envoie"]) && $_POST["envoie"] == "yes"){
 	if (is_numeric($_POST["montant"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
 		$paypal = new paypal();
