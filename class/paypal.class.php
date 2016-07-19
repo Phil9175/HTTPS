@@ -96,4 +96,29 @@ class paypal
 		return json_decode($curl_response);
 	}
 	
+	public function refund_payment($identifiant, $amount)
+	{
+		$curl = curl_init(self::$url."/v1/payments/sale/".$identifiant."/refund/");
+		curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+			'Content-Type:application/json',
+			'Authorization: Bearer '.$this->token
+			));
+					
+		curl_setopt($curl, CURLOPT_POSTFIELDS, '{ "amount" : "'.$amount.'" }');
+		if (curl_exec($curl) == false){
+			var_dump(curl_error($curl));
+		}else{
+			$curl_response = curl_exec($curl);
+		}
+        curl_close($curl);
+		return json_decode($curl_response);
+	}
+	
+	
 }
