@@ -2,8 +2,8 @@
 class paypal
 {
 	public static $url = "https://api.sandbox.paypal.com";
-	public static $clientId = "";
-	public static $secret = "";
+	public static $clientId = "ASaj1PFK21qK-4fFDfg7XY3pa-l5ZYAmA_217joRBrgAoyhPWlPpKfQ-ajc2mFfEs1CaiZ3ml0fbTfXL";
+	public static $secret = "ENfqk9uHlACKvSbg3qMQTiLNHDep0B4d0iCTKSzDh4uEuZ3Bjv9QIzAPnWsGatfnGHsVN5_1mNvPAPoh";
 	protected $token;
 	
 	public function __construct(){
@@ -111,6 +111,29 @@ class paypal
 			));
 					
 		curl_setopt($curl, CURLOPT_POSTFIELDS, '{ "amount" : "'.$amount.'" }');
+		if (curl_exec($curl) == false){
+			var_dump(curl_error($curl));
+		}else{
+			$curl_response = curl_exec($curl);
+		}
+        curl_close($curl);
+		return json_decode($curl_response);
+	}
+	
+	public function look($identifiant)
+	{
+		$curl = curl_init(self::$url."v1/payments/payment/".$identifiant);
+		curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+			'Content-Type:application/json',
+			'Authorization: Bearer '.$this->token
+			));
+			
 		if (curl_exec($curl) == false){
 			var_dump(curl_error($curl));
 		}else{
